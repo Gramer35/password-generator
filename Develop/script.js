@@ -97,7 +97,9 @@ function generatePassword() {
   return pass;
 }
 
-
+function UserSelect(pass) {
+  document.querySelector("#password").textContent = pass ;
+}
 
 
 // -----------------------------other option----------------------------------------------------
