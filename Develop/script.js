@@ -13,27 +13,107 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
+numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+lowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+uppercase = lowercase.join().toUpperCase().split("")
+specialChar = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")"]
 
 function generatePassword() {
-  var password = "";
-  // THEN I am presented with a series of prompts for password criteria
+  let passLength = parseInt(prompt("How many characters would you like your password?"));
+  while (passLength < 8 || passLength > 128) {
+    alert('Length needs to be between 8 and 128 characters');
+    passLength = prompt("How long would you like your password?");
+  } if (!passLength) {
+    alert('Please enter a number');
+    return;
+  }
+  
+  confirmNumb = confirm("Do you want numbers included in your password?")
+  confirmUp = confirm("Do you want uppercase letters included in your password?")
+  confirmLow = confirm("Do you want lowercase letters included in your password?")
+  confirmSpec = confirm("Do you want special characters included in your password?")
 
-  // THEN I select which criteria to include in the password
-  // WHEN prompted for the length of the password
-  // THEN I choose a length of at least 8 characters and no more than 128 characters
-  const passwordLength = prompt("How long would you like your password?");
 
-  // WHEN asked for character types to include in the password
-  // THEN I confirm whether or not to include lowercase, uppercase, numeric, and/or special characters
-  var lowercase = confirm("Do you want lowercase?");
-  var uppercase = confirm("Do you want uppercase?");
-  var numeric = confirm("Do you want numeric?");
-  var special = confirm("Do you want special?");
+  if (!confirmNumb && !confirmUp && !confirmLow && !confirmSpec) {
+    alert("You need to select character types!");
+    return;
 
-  // THEN my input should be validated and at least one character type should be selected
+  } else if (confirmNumb && confirmLow && confirmUp && confirmSpec) {
+    var choices = numbers.concat(lowercase, uppercase, specialChar);
 
-  // THEN a password is generated that matches the selected criteria
+  } else if (confirmNumb && confirmLow && confirmUp) {
+    var choices = numbers.concat(lowercase, uppercase);
 
-  // THEN the password is either displayed in an alert or written to the page
-  return password;
+  } else if (confirmNumb && confirmLow && confirmSpec) {
+    var choices = numbers.concat(lowercase, specialChar);
+
+  } else if (confirmNumb && confirmSpec && confirmUp) {
+    var choices = numbers.concat(uppercase, specialChar);
+
+  } else if (confirmLow && confirmUp && confirmSpec) {
+    var choices = lowercase.concat(uppercase, specialChar);
+
+  } else if (confirmNumb && confirmLow) {
+    var choices = numbers.concat(lowercase);
+
+  } else if (confirmNumb && confirmUp) {
+    var choices = numbers.concat(uppercase);
+
+  } else if (confirmNumb && confirmSpec) {
+    var choices = numbers.concat(specialChar);
+
+  } else if (confirmNLow && confirmSpec) {
+    var choices = lowercase.concat(specialChar);
+
+  } else if (confirmNLow && confirmUp) {
+    var choices = lowercase.concat(uppercase);
+
+  } else if (confirmUp && confirmSpec) {
+    var choices = uppercase.concat(specialChar);
+
+  } else if (confirmNumb) {
+    var choices = numbers;
+
+  } else if (confirmUp) {
+    var choices = uppercase;
+
+  } else if (confirmLow) {
+    var choices = lowercase;
+
+  } else if (confirmSpec) {
+    var choices = specialChar;
+
+  }
+
+  var password = []
+
+  for (var i = 0; i < passLength; i++) {
+    const pwoptions = choices[Math.floor(Math.random() * choices.length)];
+    password.push(pwoptions)
+  }
+
+  const pass = password.join("");
+  UserSelect(pass);
+  return pass;
 }
+
+
+
+
+// -----------------------------other option----------------------------------------------------
+
+// function generatePassword() {
+//   var password = "";
+
+//   let passwordLength = parseInt(prompt("How long would you like your password?"));
+//   while (passwordLength < 8 || passwordLength > 128) {
+//     alert('Length needs to be between 8 and 128 characters');
+//     passwordLength = prompt("How long would you like your password?");
+//   }
+//   var confirmNumb = confirm("Do you want numbers included in your password?")
+//   var confirmUp = confirm("Do you want uppercase letters included in your password?")
+//   var confirmLow = confirm("Do you want lowercase letters included in your password?")
+//   var confirmSpec = confirm("Do you want special characters included in your password?")
+
+//   return password;
+// }
