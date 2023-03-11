@@ -19,6 +19,7 @@ uppercase = lowercase.join("").toUpperCase().split("")
 specialChar = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")"]
 
 function generatePassword() {
+  debugger;
   let passLength = parseInt(prompt("How many characters would you like your password?"));
   while (passLength < 8 || passLength > 128) {
     alert('Length needs to be between 8 and 128 characters');
@@ -62,10 +63,10 @@ function generatePassword() {
   } else if (confirmNumb && confirmSpec) {
     var choices = numbers.concat(specialChar);
 
-  } else if (confirmNLow && confirmSpec) {
+  } else if (confirmLow && confirmSpec) {
     var choices = lowercase.concat(specialChar);
 
-  } else if (confirmNLow && confirmUp) {
+  } else if (confirmLow && confirmUp) {
     var choices = lowercase.concat(uppercase);
 
   } else if (confirmUp && confirmSpec) {
@@ -92,14 +93,13 @@ function generatePassword() {
     password.push(pwoptions)
   }
 
-  const pass = password.join("");
-  UserSelect(pass);
-  return pass;
+  const passwordText = password.join("");
+  return passwordText;
 }
 
-function UserSelect(pass) {
-  document.querySelector("#password").textContent = pass ;
-}
+// function UserSelect(pass) {
+//   document.querySelector("#password").textContent = pass ;
+// }
 
 
 // -----------------------------other option----------------------------------------------------
