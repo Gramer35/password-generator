@@ -19,7 +19,7 @@ uppercase = lowercase.join("").toUpperCase().split("")
 specialChar = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")"]
 
 function generatePassword() {
-  debugger;
+  // debugger;
   let passLength = parseInt(prompt("How many characters would you like your password?"));
   while (passLength < 8 || passLength > 128) {
     alert('Length needs to be between 8 and 128 characters');
